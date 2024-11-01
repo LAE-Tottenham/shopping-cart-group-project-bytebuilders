@@ -1,4 +1,4 @@
-import pyfiglet, shop_functions, time ; import importlib
+import pyfiglet, shop_functions, time, currency_exchange_tool2 ; import importlib
 
 #this keeps the code from breaking as it started being slow once the files got bigger
 #it just reloads the files so it just uses the up-to-date version
@@ -20,13 +20,7 @@ print('\nLoading shop...')
 time.sleep(5)
 
 
-exchange_rates = {
-    'USD': 1.13,
-    'EUR': 1.15,
-    'CAD' : 1.80,
-    'CHF' : 1.12,
-    'JPY': 194.43
-}
+exchange_rates = currency_exchange_tool2.exchangeRates()
 
 
 items = {

@@ -18,7 +18,7 @@ def currency_convert(currency, exchange_rates, shoppingPrice):
     
     return round(new_amount, 2)
 
-def view_rates(exchange_rates):
+#def view_rates(exchange_rates):
     for value in exchange_rates:
         print(f'{value}: '+ str("{:.2f}".format(exchange_rates[value])))
 

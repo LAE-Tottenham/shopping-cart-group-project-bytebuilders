@@ -1,6 +1,6 @@
 
-import os,platform,time,requests; import currency_exchange_tool; import importlib
-importlib.reload(currency_exchange_tool)
+import os,platform,time,requests; import currency_exchange_tool2; import importlib
+importlib.reload(currency_exchange_tool2)
 
 #SHOPPING CART EXPERIENCE - ALIM + KATIE
 
@@ -31,7 +31,7 @@ def viewbasket(basket, shoppingPrice, currency):
 
 def stop_shop(string):
     stop = False
-    if string == 'STOP':
+    if string.upper() == 'STOP':
         stop = True
     return stop
 
@@ -49,7 +49,7 @@ def edit_basket(items, basket, shoppingPrice, currency):
         print('\nType CANCEL to stop editing.')
         removeItem = input('\nPick the number of an item to remove it: ')
         
-        if removeItem == 'CANCEL':
+        if removeItem.upper() == 'CANCEL':
             break
         
         if not removeItem.isdigit():
@@ -92,7 +92,7 @@ def start_shop(items, basket, shoppingPrice, exchange_rates, currency):
             pay_selection(shoppingPrice, basket, items, exchange_rates, currency)
             return
 
-        elif userChoice == 'EDIT':
+        elif userChoice.upper() == 'EDIT':
             edit_basket(items, basket, shoppingPrice, currency)
 
         elif userChoice == '1' :
@@ -166,22 +166,25 @@ def shop_pay(basket, shoppingPrice, items, exchange_rates, currency):
         viewbasket(basket, shoppingPrice, currency)
         payConfirm = input(f'You have chosen to pay.\n\nEither:\n\n- Type PAY NOW to confirm payment\n- Press ENTER to cancel your payment\n- Type EDIT if you would still like to edit your basket\n- Type EXCHANGE if you would like to convert the price to another currency.\n\nYour input: ')
        
-        if payConfirm == 'EDIT':
+        if payConfirm.upper() == 'EDIT':
             edit_basket(items, basket, shoppingPrice, currency)
             continue
 
-        elif payConfirm == 'EXCHANGE':
+        elif payConfirm.upper() == 'EXCHANGE':
             
             while True:
                 clear_console()
                 continue_exchange = input(f'\nWARNING:\nYou will not be able to edit your basket once your currency has been converted.\nYou will simply go straight to payment.\n\nAre you sure you want to continue? (Y/N):  ')
-                if continue_exchange == 'Y':
+                if continue_exchange.upper() == 'Y':
                 #REMINDER: the pound sign doesnt yet change after a change of currency. fix.
                     if 10 <= shoppingPrice <= 1000:
                         print(' ')
-                        currency_exchange_tool.view_rates(exchange_rates)
+                        currency_exchange_tool2.view_rates(exchange_rates)
                         print(' ')
-                        convertedMoney = currency_exchange_tool.price_output(exchange_rates, shoppingPrice)
+                        convertedMoney = currency_exchange_tool2.currency_convert(exchange_rates, shoppingPrice)
+                        
+                        '''
+                        price_output(exchange_rates, shoppingPrice)'''
                         shoppingPrice = float(convertedMoney[0])
                         currency = change_currency(currency, convertedMoney[1])
                         print(f'\nConverting to {currency}...')
@@ -193,6 +196,7 @@ def shop_pay(basket, shoppingPrice, items, exchange_rates, currency):
                         time.sleep(1)
                         pay_now(basket, shoppingPrice, currency)
                         return
+                       
 
                     else:
                         print(f'\nYour total price must be between {currency}10 and {currency}1000 in order to convert.')
@@ -203,13 +207,13 @@ def shop_pay(basket, shoppingPrice, items, exchange_rates, currency):
                         return
                     
 
-                elif continue_exchange == 'N':
+                elif continue_exchange.upper() == 'N':
                     break
                 continue
             
             
 
-        elif payConfirm == 'PAY NOW':
+        elif payConfirm.upper() == 'PAY NOW':
             pay_now(basket, shoppingPrice, currency)
             return
 
