@@ -1,3 +1,6 @@
+
+#VAHID + DANIEL CURRENCY EXCHANGE FUNCTION
+
 import requests
 
 url = 'https://marketdata.tradermade.com/api/v1/live?api_key=ceWoy_Kfrqq42dUehyOY&currency=GBPUSD,GBPEUR,GBPCHF,GBPJPY,GBPCAD'
