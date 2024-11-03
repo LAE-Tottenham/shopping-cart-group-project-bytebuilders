@@ -32,20 +32,24 @@ def check_currency_exists(currency, currency_dict):
         return False
  
 def currency_convert(currency_dict, totalPrice):
-    currency = input(f"What would you like to convert to? our current rates against the GBP are {currency_dict}: ").upper() 
-        #ok so for this i realised it wasnt done cus of the way it looked when it was outputted, but here is an idea:
-        #you could have the string ending in '..are: ' and then output the exchange rates in the nice format on a seperate line (maybe using separate print statement idk)- this cud be in Shopping functions or here but not both of course
+    print("What would you like to convert to? our current rates against the GBP are:")
+    for differentCurrency in currency_dict:
+        print(f"{differentCurrency}: {currency_dict[differentCurrency]}")
+    print("")
+    currency = input().upper()
     while currency not in currency_dict:
         print("That is not a supported currency.")
-        currency = input(f"What would you like to convert to? our current rates against the GBP are {currency_dict}: ").upper() #same for here
-
+        print("What would you like to convert to? our current rates against the GBP are:")
+        for differentCurrency in currency_dict:
+             print(f"{differentCurrency}: {currency_dict[differentCurrency]}")
+        print("")
+        currency = input().upper()
     if check_currency_exists(currency, currency_dict) == True:
         if float(totalPrice) < 10.0 or float(totalPrice) > 1000.0:
             print("amount must be > £10 and < £1000.")
         else:
             convertedCurrency = totalPrice*float(currency_dict[currency])
     return convertedCurrency, currency
-#print(currency_convert()) 
 
 def view_rates(exchange_rates):
     print(exchange_rates)

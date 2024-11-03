@@ -1,4 +1,4 @@
-import pyfiglet, shop_functions, time, currency_exchange_tool2 ; import importlib
+import pyfiglet, shop_functions, time, currency_exchange_tool ; import importlib
 
 #this keeps the code from breaking as it started being slow once the files got bigger
 #it just reloads the files so it just uses the up-to-date version
@@ -20,7 +20,7 @@ print('\nLoading shop...')
 time.sleep(5)
 
 
-exchange_rates = currency_exchange_tool2.exchangeRates()
+exchange_rates = currency_exchange_tool.exchangeRates()
 
 
 items = {
@@ -40,4 +40,4 @@ shop_functions.clear_console()
 shopping_cart_art = pyfiglet.figlet_format('byteBuilders')
 print(shopping_cart_art)
 input('Welcome to byteBuilders! Press ENTER to start shopping.\n')
-shop_functions.start_shop(items, basket, shoppingPrice, exchange_rates, currency)
+shop_functions.start_shop(items, basket, shoppingPrice, exchange_rates, currency, shippingCost)
