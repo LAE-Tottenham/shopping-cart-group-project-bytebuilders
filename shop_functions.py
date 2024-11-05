@@ -295,7 +295,13 @@ def distanceCalculation(longitude, latitude):
     print(f"Appprox. Shipping Distance: {distance}")
 
     numericalDistance=distance.split()
-    shippingCost=((float(numericalDistance[0])*8))
+
+    if numericalDistance[1] == "km":
+        shippingCost=((float(numericalDistance[0])*8))
+        
+    elif numericalDistance[1] == "m":
+        shippingCost=((float(numericalDistance[0])*0.008))
+
     print("Shipping Cost: £""{:.2f}".format(shippingCost))
 
     return shippingCost
